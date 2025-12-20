@@ -8,14 +8,14 @@ It challenges the standard view of the wavefunction as a fundamental mathematica
 
 This project draws inspiration from several historical and philosophical ideas:
 
-*   **Plato's Cave:** Just as the prisoners in Plato's cave mistake shadows for reality, standard QM might be mistaking the 2D "shadow" (the wavefunction) for the full 3D reality (the Hyperstate).
-*   **David Bohm's Implicate Order:** The idea that there is a deeper, hidden order to the universe that we cannot directly perceive.
-*   **Kaluza-Klein Theory:** The notion that higher spatial dimensions can explain fundamental forces.
+* **Plato's Cave:** Just as the prisoners in Plato's cave mistake shadows for reality, standard QM might be mistaking the 2D "shadow" (the wavefunction) for the full 3D reality (the Hyperstate).
+* **David Bohm's Implicate Order:** The idea that there is a deeper, hidden order to the universe that we cannot directly perceive.
+* **Kaluza-Klein Theory:** The notion that higher spatial dimensions can explain fundamental forces.
 
 In this model:
-*   **Superposition** is simply the geometry of a helix. It looks like a wave from the side, but it's a solid object in 3D.
-*   **Collapse** is the geometric act of slicing this cylinder at a specific, random phase angle.
-*   **Uncertainty** arises because you cannot simultaneously define the winding density (momentum) and a specific slice point (position) without losing information about the other.
+* **Superposition** is simply the geometry of a helix. It looks like a wave from the side, but it's a solid object in 3D.
+* **Collapse** is the geometric act of slicing this cylinder at a specific, random phase angle.
+* **Uncertainty** arises because you cannot simultaneously define the winding density (momentum) and a specific slice point (position) without losing information about the other.
 
 ## 📐 The Math
 
@@ -26,11 +26,11 @@ $$
 $$
 
 Where:
-*   $x$: Spatial coordinate
-*   $A$: Radius of the cylinder (Amplitude)
-*   $k$: Momentum (Winding density)
-*   $\omega$: Frequency
-*   $\theta$: The hidden variable (Phase orientation)
+* $x$: Spatial coordinate
+* $A$: Radius of the cylinder (Amplitude)
+* $k$: Momentum (Winding density)
+* $\omega$: Frequency
+* $\theta$: The hidden variable (Phase orientation)
 
 The **Observed Reality** ($\Psi$), which we call the wavefunction in standard QM, is merely the projection of this Hyperstate onto our observable plane (the Real axis):
 
@@ -53,7 +53,7 @@ $$
 
 ## 🚀 Usage
 
-The project comes with three experiments to visualize the theory:
+The project comes with four experiments to visualize the theory:
 
 ### 1. Superposition (The Helix)
 Visualizes the 3D Hyperstate and its 2D Shadow side-by-side.
@@ -72,6 +72,21 @@ Simulates interference by adding two helices together. The 3D addition creates a
 ```bash
 python experiments/03_double_slit.py
 ```
+
+### 4. Momentum Verification (Fourier Proof)
+Performs a Fast Fourier Transform (FFT) on the projected shadow.
+* **Purpose**: To mathematically prove that the "Pitch" of the 3D Helix is identical to the "Momentum" ($k$) of the 2D wave.
+* **Result**: A spectral spike at $k$ confirms the geometric origin of the Uncertainty Principle ($p = \hbar k$).
+```bash
+python experiments/04_momentum_verification.py
+```
+
+## 🗺️ Future Roadmap
+To move closer to a rigorous physical interpretation, future development will focus on:
+
+- [ ] **Bell Test Simulation**: Implement a coupled two-particle helix system with correlated phase variables to numerically test CHSH inequality violations and document the nonlocal mechanism.
+- [ ] **Decoherence Dynamics**: Simulate the evolution of the phase distribution $P(\xi)$ from a narrow (Delta) distribution to a uniform distribution via controlled noise injection.
+- [ ] **Born Rule Investigation**: Develop a relaxation/equilibration model for $P(\xi)$ that reproduces $|\Psi|^{2}$ from dynamics rather than assumption.
 
 ## 📄 License
 
