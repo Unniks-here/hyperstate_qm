@@ -1,8 +1,9 @@
 from qiskit_ibm_runtime import QiskitRuntimeService
 import sys
 
-# !!! IMPORTANT: Replace this string with your actual IBM Quantum API Token !!!
-API_TOKEN = "i1uBSca2dwMnoKlWBWeYfiAWub5TOv8rsnEzHQo60uPl"
+# !!! IMPORTANT: Replace this string with your actual IBM Quantum# --- CONFIGURATION ---
+# SECURITY WARNING: NEVER COMMIT YOUR API TOKEN
+API_TOKEN = "PASTE_YOUR_IBM_TOKEN_HERE"
 
 if API_TOKEN == "PASTE_YOUR_IBM_TOKEN_HERE":
     print("ERROR: You must replace 'PASTE_YOUR_IBM_TOKEN_HERE' with your actual API token.")
