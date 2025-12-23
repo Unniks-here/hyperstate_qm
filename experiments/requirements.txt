@@ -3,4 +3,3 @@ qiskit-ibm-runtime
 numpy
 matplotlib
 packaging
-scipy

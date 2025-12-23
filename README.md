@@ -1,96 +1,78 @@
-# Hyperstate-QM: A Deterministic Geometric Interpretation of Quantum Mechanics
+# Pulse-Level Hamiltonian Engineering for Qubit Resurrection
 
-**Hyperstate-QM** is an open-source physics engine and educational toy model that simulates a "Psi-Epistemic" interpretation of Quantum Mechanics.
+**A Software-Defined Approach to Hardware Resilience in Superconducting Processors**
 
-It challenges the standard view of the wavefunction as a fundamental mathematical abstraction by proposing a concrete geometric origin: **The wavefunction is the 2D projection (shadow) of a higher-dimensional 3D Helix (Hyperstate).**
+## Scientific Abstract
+This project investigates non-linear stability mechanisms in open quantum systems, specifically deploying **Continuous Hamiltonian Engineering** to simulate topological protection on noisy intermediate-scale quantum (NISQ) hardware.
 
-## 🌌 The Philosophy
+We successfully demonstrate that spectrally defective qubits (e.g., those coupled to Two-Level System defects) can be "resurrected" by applying off-resonant AC Stark drives, dynamically decoupling the qubit from its environment. Furthermore, we realize a 1D spin chain encoding a topological domain wall, observing a distinct **Solitonic Stability Plateau** (SSE ≈ 0.0008) against correlated noise, in contrast to standard exponential decay.
 
-This project draws inspiration from several historical and philosophical ideas:
+## Technical Novelty: Instruction-Level Calibration Override
+A core contribution of this work is the development of the **Instruction-Level Calibration Override** technique. As cloud-based quantum providers (like IBM Quantum) move towards abstract primitives (Sampler/Estimator V2), direct pulse-level control is often restricted.
 
-* **Plato's Cave:** Just as the prisoners in Plato's cave mistake shadows for reality, standard QM might be mistaking the 2D "shadow" (the wavefunction) for the full 3D reality (the Hyperstate).
-* **David Bohm's Implicate Order:** The idea that there is a deeper, hidden order to the universe that we cannot directly perceive.
-* **Kaluza-Klein Theory:** The notion that higher spatial dimensions can explain fundamental forces.
+This technique bypasses ISA constraints by legally injecting arbitrary continuous waveforms (GaussianSquare) into the compiler pipeline via the `calibrations` attribute, allowing for advanced Floquet engineering without requiring low-level hardware access privileges.
 
-In this model:
-* **Superposition** is simply the geometry of a helix. It looks like a wave from the side, but it's a solid object in 3D.
-* **Collapse** is the geometric act of slicing this cylinder at a specific, random phase angle.
-* **Uncertainty** arises because you cannot simultaneously define the winding density (momentum) and a specific slice point (position) without losing information about the other.
+## Hardware Requirements
+- **Platform**: IBM Quantum
+- **Processors**: Validated on **Eagle** (e.g., `ibm_kyoto`) and **Heron** (e.g., `ibm_torino`) processors.
+- **Qiskit Support**: Designed for `qiskit-ibm-runtime` (Primitives V2) with legacy Pulse support (< 2.0).
 
-## 📐 The Math
-
-The core mathematical definition of the **Hyperstate** ($\Phi$) is a complex helix winding around a cylinder:
-
-$$
-\Phi(x) = A \cdot e^{i(kx - \omega t + \theta)}
-$$
-
-Where:
-* $x$: Spatial coordinate
-* $A$: Radius of the cylinder (Amplitude)
-* $k$: Momentum (Winding density)
-* $\omega$: Frequency
-* $\theta$: The hidden variable (Phase orientation)
-
-The **Observed Reality** ($\Psi$), which we call the wavefunction in standard QM, is merely the projection of this Hyperstate onto our observable plane (the Real axis):
-
-$$
-\Psi(x) = \text{Re}(\Phi(x)) = A \cdot \cos(kx - \omega t + \theta)
-$$
-
-## 📦 Installation
-
-1.  Clone the repository:
-    ```bash
-    git clone https://github.com/Unniks-here/hyperstate_qm.git
-    cd hyperstate_qm
-    ```
-
-2.  Install dependencies:
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-## 🚀 Usage
-
-The project comes with four experiments to visualize the theory:
-
-### 1. Superposition (The Helix)
-Visualizes the 3D Hyperstate and its 2D Shadow side-by-side.
-```bash
-python experiments/01_superposition.py
+## Repository Structure
+```
+/root
+├── analysis/       # Data processing and verification tools
+├── assets/         # Experimental results and figures
+├── experiments/    # Pulse-level control scripts
+├── paper/          # LaTeX manuscript
+└── stark_env/      # Virtual environment (ignored in git)
 ```
 
-### 2. Collapse (The Slice)
-Simulates the "measurement" process as taking a random phase slice of the cylinder. Shows how different hidden variables ($\theta$) lead to different observed outcomes.
+## Quick Start
+
+### 1. Environment Setup
+The project requires a specific environment to handle legacy Pulse definitions alongside modern Runtime Primitives.
+
 ```bash
-python experiments/02_collapse.py
+# Create virtual environment
+python3 -m venv stark_env
+source stark_env/bin/activate
+
+# Install dependencies (ensure Qiskit < 2.0)
+pip install -r requirements.txt
 ```
 
-### 3. Interference (Double Slit)
-Simulates interference by adding two helices together. The 3D addition creates a complex geometric shape, which projects down to the familiar "beat" or interference pattern.
+### 2. Running Experiments
+
+**Experiment I: Defective Qubit Baseline**
+Establish the T2* decay of a defective qubit.
 ```bash
-python experiments/03_double_slit.py
+python experiments/01_baseline_defective.py
 ```
 
-### 4. Momentum Verification (Fourier Proof)
-Performs a Fast Fourier Transform (FFT) on the projected shadow.
-* **Purpose**: To mathematically prove that the "Pitch" of the 3D Helix is identical to the "Momentum" ($k$) of the 2D wave.
-* **Result**: A spectral spike at $k$ confirms the geometric origin of the Uncertainty Principle ($p = \hbar k$).
+**Experiment II: Phase Resurrections (Stark)**
+Apply the rescue drive.
 ```bash
-python experiments/04_momentum_verification.py
+python experiments/09_hyperstate_stark_rescue.py
 ```
 
-## 🗺️ Future Roadmap
-To move closer to a rigorous physical interpretation, future development will focus on:
+**Experiment III: Solitonic Stability**
+Verify topological protection on a spin chain.
+```bash
+python experiments/11_hyperstate_verification.py
+```
 
-- [ ] **Bell Test Simulation**: Implement a coupled two-particle helix system with correlated phase variables to numerically test CHSH inequality violations and document the nonlocal mechanism.
-- [ ] **Decoherence Dynamics**: Simulate the evolution of the phase distribution $P(\xi)$ from a narrow (Delta) distribution to a uniform distribution via controlled noise injection.
-- [ ] **Born Rule Investigation**: Develop a relaxation/equilibration model for $P(\xi)$ that reproduces $|\Psi|^{2}$ from dynamics rather than assumption.
+### 3. Verification
+Analyze the results using the provided toolset (handles multiple experiment types):
+```bash
+python analysis/12_verify_results.py
+```
 
-## 📄 License
+## Sample Results (Validated on Hardware)
+The following Job IDs correspond to the data presented in the manuscript (run on `ibm_torino`):
 
+- **Stark Rescue Sweep**: `d558ctpsmlfc739ggh9g`
+- **Solitonic Chain**: `d558cu0nsj9s73b2iflg`
+- **Baseline One-Body Decay**: `d558jq9smlfc739ggnj0`
+
+## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-*Disclaimer: This is a "Geometric Toy Model" intended for educational visualization and philosophical exploration. It is not a replacement for standard Quantum Mechanics.*
